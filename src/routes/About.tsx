@@ -1,35 +1,113 @@
+import { useEffect, useState } from 'react'
+import { getAboutPage } from '../lib/sanity-queries'
+import { urlFor } from '../lib/sanity'
+import type { AboutPage } from '../lib/sanity'
+
 export function About() {
+  const [aboutData, setAboutData] = useState<AboutPage | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const data = await getAboutPage()
+        setAboutData(data)
+      } catch (err) {
+        setError('Failed to load about page content')
+        console.error('Error fetching about data:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchAboutData()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="container py-12">
+        <div className="flex justify-center items-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !aboutData) {
+    return (
+      <div className="container py-12">
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+              About Us
+            </h1>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              Learn more about our team and mission.
+            </p>
+          </div>
+          
+          <div className="prose prose-lg mx-auto">
+            <p className="text-lg leading-8 text-muted-foreground mb-8">
+              We are a passionate team of developers and designers dedicated to creating exceptional digital experiences. 
+              With years of experience in modern web technologies, we help businesses and individuals bring their 
+              ideas to life through innovative solutions.
+            </p>
+            
+            <p className="text-lg leading-8 text-muted-foreground mb-8">
+              Our approach combines cutting-edge technology with timeless design principles, ensuring that every 
+              project we work on is not only functional and performant but also beautiful and user-friendly. 
+              We believe in the power of collaboration and work closely with our clients to understand their 
+              unique needs and goals.
+            </p>
+            
+            <p className="text-lg leading-8 text-muted-foreground">
+              Whether you're a startup looking to build your first product or an established company seeking 
+              to modernize your digital presence, we have the expertise and passion to help you succeed. 
+              Let's work together to create something amazing.
+            </p>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="container py-12">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            About Us
+            {aboutData.title}
           </h1>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Learn more about our team and mission.
-          </p>
         </div>
         
+        {aboutData.image && (
+          <div className="mb-8 text-center">
+            <img
+              src={urlFor(aboutData.image).url()}
+              alt={aboutData.title}
+              className="mx-auto rounded-lg shadow-lg max-w-2xl"
+            />
+          </div>
+        )}
+        
         <div className="prose prose-lg mx-auto">
-          <p className="text-lg leading-8 text-muted-foreground mb-8">
-            We are a passionate team of developers and designers dedicated to creating exceptional digital experiences. 
-            With years of experience in modern web technologies, we help businesses and individuals bring their 
-            ideas to life through innovative solutions.
-          </p>
-          
-          <p className="text-lg leading-8 text-muted-foreground mb-8">
-            Our approach combines cutting-edge technology with timeless design principles, ensuring that every 
-            project we work on is not only functional and performant but also beautiful and user-friendly. 
-            We believe in the power of collaboration and work closely with our clients to understand their 
-            unique needs and goals.
-          </p>
-          
-          <p className="text-lg leading-8 text-muted-foreground">
-            Whether you're a startup looking to build your first product or an established company seeking 
-            to modernize your digital presence, we have the expertise and passion to help you succeed. 
-            Let's work together to create something amazing.
-          </p>
+          {aboutData.content && aboutData.content.length > 0 ? (
+            aboutData.content.map((block: any, index: number) => {
+              if (block._type === 'block') {
+                return (
+                  <p key={index} className="text-lg leading-8 text-muted-foreground mb-8">
+                    {block.children?.[0]?.text || ''}
+                  </p>
+                )
+              }
+              return null
+            })
+          ) : (
+            <p className="text-lg leading-8 text-muted-foreground">
+              Content coming soon...
+            </p>
+          )}
         </div>
       </div>
     </div>

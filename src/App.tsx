@@ -39,10 +39,6 @@ export const router = createBrowserRouter([
             <Services />
           </Suspense>
         ),
-        loader: async () => {
-          const module = await import('./routes/Services')
-          return module.loader()
-        },
       },
       {
         path: 'about',

@@ -1,118 +1,134 @@
-# React Router 7 Starter
+# React Router 7 + Sanity CMS
 
-A modern starter template built with React Router 7 (Data Router mode) and ShadCN UI. This project demonstrates lazy loading, loaders, and a clean component architecture.
+A modern website built with React Router 7 and Sanity CMS, featuring dynamic content management with real-time updates.
 
-## Features
+## 🚀 Quick Start
 
-- ⚡ **React Router 7** - Latest version with Data Router mode
-- 🎨 **ShadCN UI** - Beautiful, accessible components
-- 🚀 **Lazy Loading** - All routes are code-split and lazy-loaded
-- 📊 **Loaders** - Example of using loaders for data fetching
-- 🎯 **TypeScript** - Full type safety
-- 🎨 **TailwindCSS** - Utility-first CSS framework
-- 📱 **Responsive** - Mobile-first design
+### Prerequisites
 
-## Pages
+1. **Node.js 18+** installed
+2. **Sanity account** at [sanity.io](https://sanity.io)
 
-- **Home** - Welcome page with project overview
-- **Services** - Service offerings with loader example
-- **About** - Company information
-- **Contact** - Contact form with ShadCN UI components
+### Setup
 
-## Quick Start
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-### 1. Install Dependencies
+2. **Configure environment:**
+   ```bash
+   cp env.example .env.local
+   # Edit .env.local with your Sanity project details
+   ```
+
+3. **Create content:**
+   ```bash
+   npm run sanity:create-content
+   ```
+
+4. **Start development:**
+   ```bash
+   # Terminal 1: Start Sanity Studio
+   npm run sanity:studio
+   
+   # Terminal 2: Start React app
+   npm run dev
+   ```
+
+## 📦 Available Scripts
 
 ```bash
-npm install
+# Development
+npm run dev                    # Start React development server
+npm run build                  # Build for production
+npm run preview                # Preview production build
+
+# Sanity CMS
+npm run sanity:studio          # Start Sanity Studio
+npm run sanity:deploy          # Deploy Sanity Studio
+npm run sanity:create-content  # Create sample content
+npm run sanity:test-content    # Check content status
+
+# Code Quality
+npm run lint                   # Run ESLint
 ```
 
-### 2. Apply ShadCN Theme (Optional)
+## 🏗️ Project Structure
 
-To apply the Solar Dusk theme as mentioned in the requirements:
+```
+react-router-7/
+├── src/
+│   ├── components/           # React components
+│   ├── routes/              # Page components (Home, Services, About, Contact)
+│   ├── lib/
+│   │   ├── sanity.ts        # Sanity client configuration
+│   │   ├── sanity-queries.ts # GROQ queries
+│   │   └── sanity-utils.ts  # Utility functions
+│   └── App.tsx              # Main app with routing
+├── scripts/
+│   ├── create-content.js    # Content creation script
+│   └── test-content.js      # Content testing script
+├── sanity-studio/           # Sanity Studio (CMS interface)
+└── SANITY_INTEGRATION_GUIDE.md # Complete integration guide
+```
+
+## 🎯 Features
+
+- ✅ **React Router 7** - Latest routing with dynamic data loading
+- ✅ **Sanity CMS** - Headless CMS for content management
+- ✅ **TypeScript** - Full type safety
+- ✅ **Tailwind CSS** - Utility-first styling
+- ✅ **ShadCN UI** - Beautiful component library
+- ✅ **Real-time Updates** - Content changes reflect immediately
+- ✅ **Error Handling** - Robust error states and loading indicators
+- ✅ **Sample Content** - Ready-to-use content structure
+
+## 🌐 Content Types
+
+- **Home Page** - Hero section with CTA
+- **Services** - Service offerings with icons
+- **About Page** - Company information
+- **Contact Page** - Contact form and information
+- **Site Settings** - Global site configuration
+
+## 🔧 Environment Variables
+
+Create a `.env.local` file:
+
+```env
+VITE_SANITY_PROJECT_ID=your-project-id
+VITE_SANITY_DATASET=production
+VITE_SANITY_TOKEN=your-token-here
+```
+
+## 🚀 Deployment
+
+### Manual Deployment
 
 ```bash
-npx shadcn@latest add https://tweakcn.com/r/themes/solar-dusk.json
+# Build the application
+npm run build
+
+# Deploy Sanity Studio
+npm run sanity:deploy
+
+# Deploy your React app to your preferred platform
 ```
 
-### 3. Start Development Server
+## 📚 Documentation
 
-```bash
-npm run dev
-```
+- [SANITY_INTEGRATION_GUIDE.md](./SANITY_INTEGRATION_GUIDE.md) - Complete integration guide
+- [React Router 7 Docs](https://reactrouter.com/)
+- [Sanity Documentation](https://www.sanity.io/docs)
 
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+## 🤝 Contributing
 
-## Project Structure
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-```
-src/
-├── components/
-│   ├── ui/           # ShadCN UI components
-│   ├── Layout.tsx    # Main layout with navbar/footer
-│   ├── Navbar.tsx    # Navigation component
-│   └── Footer.tsx    # Footer component
-├── routes/
-│   ├── Home.tsx      # Home page
-│   ├── Services.tsx  # Services page with loader
-│   ├── About.tsx     # About page
-│   └── Contact.tsx   # Contact form page
-├── lib/
-│   └── utils.ts      # Utility functions
-├── App.tsx           # Router configuration
-├── main.tsx          # Application entry point
-└── index.css         # Global styles
-```
+## 📄 License
 
-## Key Features Explained
-
-### Lazy Loading
-All route components are lazy-loaded using React's `lazy()` function and `Suspense`. This improves initial bundle size and loading performance.
-
-### Loaders
-The Services page demonstrates React Router 7's loader functionality, which allows data fetching before the component renders. The loader simulates an API call with a 500ms delay.
-
-### ShadCN UI Components
-The project uses several ShadCN UI components:
-- Button
-- Card (with Header, Content, Description, Title)
-- Input
-- Label
-- Textarea
-
-### Responsive Design
-The layout is fully responsive with mobile-first design using TailwindCSS utility classes.
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## Customization
-
-### Adding New Routes
-1. Create a new component in `src/routes/`
-2. Add the lazy import in `src/App.tsx`
-3. Add the route configuration to the router
-
-### Styling
-The project uses TailwindCSS with ShadCN UI's design system. CSS variables for theming are defined in `src/index.css`.
-
-## Dependencies
-
-- React 18.2.0
-- React Router DOM 7.0.0
-- ShadCN UI components
-- TailwindCSS 3.3.6
-- TypeScript 5.2.2
-- Vite 5.0.8
-
-## Browser Support
-
-This project supports all modern browsers that support ES modules and React 18.
-
-## License
-
-MIT 
+MIT License - see LICENSE file for details. 

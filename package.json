@@ -6,19 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:static": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sanity:studio": "cd sanity-studio && npm run dev",
+    "sanity:deploy": "cd sanity-studio && sanity deploy",
+    "sanity:create-content": "node scripts/create-content.js",
+    "sanity:test-content": "node scripts/test-content.js"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^7.0.0",
-    "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@sanity/client": "^7.8.1",
+    "@sanity/image-url": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.294.0",
+    "next-sanity": "^9.12.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^7.0.0",
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {
@@ -37,4 +45,4 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }
-} 
+}
