@@ -79,7 +79,7 @@ react-router-7/
 - ✅ **Sanity CMS** - Headless CMS for content management
 - ✅ **TypeScript** - Full type safety
 - ✅ **Tailwind CSS** - Utility-first styling
-- ✅ **ShadCN UI** - Beautiful component library
+- ✅ **ShadCN UI** - Beautiful component library from [TweakCN](https://tweakcn.com/)
 - ✅ **Real-time Updates** - Content changes reflect immediately
 - ✅ **Error Handling** - Robust error states and loading indicators
 - ✅ **Sample Content** - Ready-to-use content structure
