@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:static": "tsc && vite build",
+    "build:static": "tsc && vite build --mode static",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "preview:static": "npm run build:static && vite preview",
+    "serve:static": "npm run build:static && npx serve dist -p 4173",
     "sanity:studio": "cd sanity-studio && npm run dev",
     "sanity:deploy": "cd sanity-studio && sanity deploy",
     "sanity:create-content": "node scripts/create-content.js",
-    "sanity:test-content": "node scripts/test-content.js"
+    "sanity:test-content": "node scripts/test-content.js",
+    "test:static": "node scripts/test-static-build.js"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.0.2",

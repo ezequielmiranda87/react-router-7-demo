@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getAboutPage } from '../lib/sanity-queries'
 import { urlFor } from '../lib/sanity'
+import { getStaticData, fallbackData } from '../lib/static-data'
 import type { AboutPage } from '../lib/sanity'
 
 export function About() {
@@ -9,19 +10,29 @@ export function About() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchAboutData = async () => {
+    const loadAboutData = async () => {
       try {
+        // First try to get static data
+        const staticData = getStaticData()
+        if (staticData?.aboutPage) {
+          setAboutData(staticData.aboutPage)
+          setLoading(false)
+          return
+        }
+
+        // Fallback to dynamic fetching
         const data = await getAboutPage()
         setAboutData(data)
       } catch (err) {
-        setError('Failed to load about page content')
-        console.error('Error fetching about data:', err)
+        // Use fallback data if all else fails
+        setAboutData(fallbackData.aboutPage)
+        console.error('Error loading about data:', err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchAboutData()
+    loadAboutData()
   }, [])
 
   if (loading) {

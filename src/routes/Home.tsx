@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getHomePage } from '../lib/sanity-queries'
 import { urlFor } from '../lib/sanity'
+import { getStaticData, fallbackData } from '../lib/static-data'
 import type { HomePage } from '../lib/sanity'
 
 export function Home() {
@@ -9,19 +10,29 @@ export function Home() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchHomeData = async () => {
+    const loadHomeData = async () => {
       try {
+        // First try to get static data
+        const staticData = getStaticData()
+        if (staticData?.homePage) {
+          setHomeData(staticData.homePage)
+          setLoading(false)
+          return
+        }
+
+        // Fallback to dynamic fetching
         const data = await getHomePage()
         setHomeData(data)
       } catch (err) {
-        setError('Failed to load home page content')
-        console.error('Error fetching home data:', err)
+        // Use fallback data if all else fails
+        setHomeData(fallbackData.homePage)
+        console.error('Error loading home data:', err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchHomeData()
+    loadHomeData()
   }, [])
 
   if (loading) {

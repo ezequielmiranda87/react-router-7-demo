@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getServices } from '../lib/sanity-queries'
 import { urlFor } from '../lib/sanity'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { getStaticData, fallbackData } from '../lib/static-data'
 import type { Service } from '../lib/sanity'
 
 export function Services() {
@@ -10,19 +11,29 @@ export function Services() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchServices = async () => {
+    const loadServices = async () => {
       try {
+        // First try to get static data
+        const staticData = getStaticData()
+        if (staticData?.services) {
+          setServices(staticData.services)
+          setLoading(false)
+          return
+        }
+
+        // Fallback to dynamic fetching
         const data = await getServices()
         setServices(data)
       } catch (err) {
-        setError('Failed to load services')
-        console.error('Error fetching services:', err)
+        // Use fallback data if all else fails
+        setServices(fallbackData.services)
+        console.error('Error loading services:', err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchServices()
+    loadServices()
   }, [])
 
   if (loading) {

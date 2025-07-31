@@ -36,6 +36,26 @@ A modern website built with React Router 7 and Sanity CMS, featuring dynamic con
    npm run dev
    ```
 
+### Static Site Generation
+
+This project now supports static site generation with content pre-fetched from Sanity CMS:
+
+```bash
+# Build static site with CMS data
+npm run build:static
+
+# Test static build with Vite preview
+npm run preview:static
+
+# Test static build with serve (lightweight server)
+npm run serve:static
+
+# Test static build (automated)
+npm run test:static
+```
+
+See [STATIC_GENERATION.md](./STATIC_GENERATION.md) for detailed documentation.
+
 ## 📦 Available Scripts
 
 ```bash
@@ -43,6 +63,13 @@ A modern website built with React Router 7 and Sanity CMS, featuring dynamic con
 npm run dev                    # Start React development server
 npm run build                  # Build for production
 npm run preview                # Preview production build
+
+# Static Generation
+npm run build:static           # Build static site
+npm run preview:static         # Preview static build (Vite)
+npm run serve:static           # Serve static build (lightweight)
+npm run test:static            # Test static build (automated)
+```
 
 # Sanity CMS
 npm run sanity:studio          # Start Sanity Studio
@@ -77,12 +104,14 @@ react-router-7/
 
 - ✅ **React Router 7** - Latest routing with dynamic data loading
 - ✅ **Sanity CMS** - Headless CMS for content management
+- ✅ **Static Site Generation** - Build-time content pre-fetching
 - ✅ **TypeScript** - Full type safety
 - ✅ **Tailwind CSS** - Utility-first styling
 - ✅ **ShadCN UI** - Beautiful component library from [TweakCN](https://tweakcn.com/)
 - ✅ **Real-time Updates** - Content changes reflect immediately
 - ✅ **Error Handling** - Robust error states and loading indicators
 - ✅ **Sample Content** - Ready-to-use content structure
+- ✅ **SEO Optimized** - Static generation for better search engine visibility
 
 ## 🌐 Content Types
 

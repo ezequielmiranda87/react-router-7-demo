@@ -5,6 +5,7 @@ import { Input } from '../components/ui/input'
 import { Label } from '../components/ui/label'
 import { Textarea } from '../components/ui/textarea'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { getStaticData, fallbackData } from '../lib/static-data'
 import type { ContactPage } from '../lib/sanity'
 
 export function Contact() {
@@ -18,19 +19,29 @@ export function Contact() {
   })
 
   useEffect(() => {
-    const fetchContactData = async () => {
+    const loadContactData = async () => {
       try {
+        // First try to get static data
+        const staticData = getStaticData()
+        if (staticData?.contactPage) {
+          setContactData(staticData.contactPage)
+          setLoading(false)
+          return
+        }
+
+        // Fallback to dynamic fetching
         const data = await getContactPage()
         setContactData(data)
       } catch (err) {
-        setError('Failed to load contact page content')
-        console.error('Error fetching contact data:', err)
+        // Use fallback data if all else fails
+        setContactData(fallbackData.contactPage)
+        console.error('Error loading contact data:', err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchContactData()
+    loadContactData()
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
