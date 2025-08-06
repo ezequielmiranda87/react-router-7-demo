@@ -3,6 +3,7 @@ import { getHomePage } from '../lib/sanity-queries'
 import { urlFor } from '../lib/sanity'
 import { getStaticData, fallbackData } from '../lib/static-data'
 import type { HomePage } from '../lib/sanity'
+import { AdvisorFlow } from '../components/AdvisorFlow'
 
 export function Home() {
   const [homeData, setHomeData] = useState<HomePage | null>(null)
@@ -112,6 +113,19 @@ export function Home() {
             </a>
           </div>
         )}
+        
+        {/* AI Advisor Flow */}
+        <div className="mt-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Get Strategic Roadmaps
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Tell us about your project and get strategic recommendations, implementation roadmaps, and expert guidance in just 2 minutes.
+            </p>
+          </div>
+          <AdvisorFlow />
+        </div>
       </div>
     </div>
   )
