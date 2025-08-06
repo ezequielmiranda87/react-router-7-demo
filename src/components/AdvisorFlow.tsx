@@ -121,7 +121,7 @@ export function AdvisorFlow() {
           Let's find the perfect solutions for your project. This will only take 2 minutes!
         </p>
       </div>
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 sm:mt-8">
          <div className="text-center p-4">
            <Sparkles className="h-8 w-8 mx-auto text-primary mb-2" />
            <h3 className="font-semibold">Strategic Roadmaps</h3>
@@ -181,7 +181,7 @@ export function AdvisorFlow() {
           This helps us provide more relevant recommendations
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {industries.map((industry) => (
           <Button
             key={industry}
@@ -206,7 +206,7 @@ export function AdvisorFlow() {
           This helps us recommend solutions within your investment range
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {budgetRanges.map((budget) => (
           <Button
             key={budget}
@@ -231,7 +231,7 @@ export function AdvisorFlow() {
           This helps us plan the project timeline
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {timelineOptions.map((timeline) => (
           <Button
             key={timeline}
@@ -346,7 +346,7 @@ export function AdvisorFlow() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Button onClick={resetFlow} variant="outline" className="flex-1">
             Start Over
           </Button>
@@ -400,18 +400,18 @@ export function AdvisorFlow() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <Card className="border-0 shadow-lg">
-        <CardHeader className="pb-6">
+        <CardHeader className="pb-4 sm:pb-6 px-4 sm:px-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-xl">Business Advisor</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-lg sm:text-xl">Business Advisor</CardTitle>
+                <CardDescription className="text-sm">
                   Step {['welcome', 'needs', 'industry', 'budget', 'timeline', 'results'].indexOf(state.currentStep) + 1} of 6
                 </CardDescription>
               </div>
               <div className="flex items-center gap-2">
-                <Users className="h-5 w-5 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">2 min</span>
+                <Users className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground" />
+                <span className="text-xs sm:text-sm text-muted-foreground">2 min</span>
               </div>
             </div>
             
@@ -425,36 +425,39 @@ export function AdvisorFlow() {
           </div>
         </CardHeader>
 
-        <CardContent className="px-8 pb-8">
+        <CardContent className="px-4 sm:px-6 lg:px-8 pb-6 sm:pb-8">
           {renderStepContent()}
 
           {/* Navigation Buttons */}
           {!isResultsStep && (
-            <div className="flex justify-between mt-8">
+            <div className="flex justify-between mt-6 sm:mt-8 gap-4">
               <Button
                 variant="outline"
                 onClick={prevStep}
                 disabled={state.currentStep === 'welcome'}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 flex-1 sm:flex-none"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Previous
+                <span className="hidden sm:inline">Previous</span>
+                <span className="sm:hidden">Back</span>
               </Button>
 
               {isLastStep ? (
                 <Button
                   onClick={handleSubmit}
                   disabled={!canProceed() || state.isLoading}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 flex-1 sm:flex-none"
                 >
                   {state.isLoading ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      Analyzing...
+                      <span className="hidden sm:inline">Analyzing...</span>
+                      <span className="sm:hidden">...</span>
                     </>
                   ) : (
                     <>
-                      Get Recommendations
+                      <span className="hidden sm:inline">Get Recommendations</span>
+                      <span className="sm:hidden">Get Results</span>
                       <ArrowRight className="h-4 w-4" />
                     </>
                   )}
@@ -463,7 +466,7 @@ export function AdvisorFlow() {
                 <Button
                   onClick={nextStep}
                   disabled={!canProceed()}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 flex-1 sm:flex-none"
                   title={!canProceed() ? `Please complete the current step to continue` : ''}
                 >
                   Next

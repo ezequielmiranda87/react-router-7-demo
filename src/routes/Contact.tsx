@@ -59,7 +59,7 @@ export function Contact() {
 
   if (loading) {
     return (
-      <div className="container py-12">
+      <div className="container py-6 sm:py-12">
         <div className="flex justify-center items-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
@@ -69,13 +69,13 @@ export function Contact() {
 
   if (error || !contactData) {
     return (
-      <div className="container py-12">
+      <div className="container py-6 sm:py-12">
         <div className="mx-auto max-w-2xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
               Contact Us
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
               Get in touch with us to discuss your project or ask any questions.
             </p>
           </div>
@@ -140,18 +140,18 @@ export function Contact() {
   }
 
   return (
-    <div className="container py-12">
+    <div className="container py-6 sm:py-12">
       <div className="mx-auto max-w-2xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             {contactData.title}
           </h1>
           {contactData.content && contactData.content.length > 0 && (
-            <div className="mt-6 prose prose-lg mx-auto">
+            <div className="mt-4 sm:mt-6 prose prose-base sm:prose-lg mx-auto">
               {contactData.content.map((block: any, index: number) => {
                 if (block._type === 'block') {
                   return (
-                    <p key={index} className="text-lg leading-8 text-muted-foreground">
+                    <p key={index} className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
                       {block.children?.[0]?.text || ''}
                     </p>
                   )
@@ -162,7 +162,7 @@ export function Contact() {
           )}
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle>Send us a message</CardTitle>

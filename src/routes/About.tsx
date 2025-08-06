@@ -47,32 +47,32 @@ export function About() {
 
   if (error || !aboutData) {
     return (
-      <div className="container py-12">
+      <div className="container py-6 sm:py-12">
         <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
               About Us
             </h1>
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
               Learn more about our team and mission.
             </p>
           </div>
           
-          <div className="prose prose-lg mx-auto">
-            <p className="text-lg leading-8 text-muted-foreground mb-8">
+          <div className="prose prose-base sm:prose-lg mx-auto">
+            <p className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground mb-6 sm:mb-8">
               We are a passionate team of developers and designers dedicated to creating exceptional digital experiences. 
               With years of experience in modern web technologies, we help businesses and individuals bring their 
               ideas to life through innovative solutions.
             </p>
             
-            <p className="text-lg leading-8 text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground mb-6 sm:mb-8">
               Our approach combines cutting-edge technology with timeless design principles, ensuring that every 
               project we work on is not only functional and performant but also beautiful and user-friendly. 
               We believe in the power of collaboration and work closely with our clients to understand their 
               unique needs and goals.
             </p>
             
-            <p className="text-lg leading-8 text-muted-foreground">
+            <p className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
               Whether you're a startup looking to build your first product or an established company seeking 
               to modernize your digital presence, we have the expertise and passion to help you succeed. 
               Let's work together to create something amazing.
@@ -84,30 +84,30 @@ export function About() {
   }
 
   return (
-    <div className="container py-12">
+    <div className="container py-6 sm:py-12">
       <div className="mx-auto max-w-4xl">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
             {aboutData.title}
           </h1>
         </div>
         
         {aboutData.image && (
-          <div className="mb-8 text-center">
+          <div className="mb-6 sm:mb-8 text-center">
             <img
               src={urlFor(aboutData.image).url()}
               alt={aboutData.title}
-              className="mx-auto rounded-lg shadow-lg max-w-2xl"
+              className="mx-auto rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-2xl"
             />
           </div>
         )}
         
-        <div className="prose prose-lg mx-auto">
+        <div className="prose prose-base sm:prose-lg mx-auto">
           {aboutData.content && aboutData.content.length > 0 ? (
             aboutData.content.map((block: any, index: number) => {
               if (block._type === 'block') {
                 return (
-                  <p key={index} className="text-lg leading-8 text-muted-foreground mb-8">
+                  <p key={index} className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground mb-6 sm:mb-8">
                     {block.children?.[0]?.text || ''}
                   </p>
                 )
@@ -115,7 +115,7 @@ export function About() {
               return null
             })
           ) : (
-            <p className="text-lg leading-8 text-muted-foreground">
+            <p className="text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
               Content coming soon...
             </p>
           )}

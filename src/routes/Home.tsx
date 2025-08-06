@@ -48,21 +48,21 @@ export function Home() {
 
   if (error || !homeData) {
     return (
-      <div className="container py-12">
+      <div className="container py-6 sm:py-12">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight">
             Welcome to React Router 7 Starter
           </h1>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+          <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
             A modern starter template built with React Router 7 (Data Router mode) and ShadCN UI.
             This project demonstrates lazy loading, loaders, and a clean component architecture.
           </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="mt-8 sm:mt-10 flex items-center justify-center gap-4 sm:gap-x-6 flex-col sm:flex-row">
             <a
               href="https://reactrouter.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
+              className="w-full sm:w-auto rounded-md bg-primary px-4 py-3 sm:px-3.5 sm:py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 text-center"
             >
               Learn React Router 7
             </a>
@@ -70,7 +70,7 @@ export function Home() {
               href="https://ui.shadcn.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold leading-6 text-foreground"
+              className="w-full sm:w-auto text-sm font-semibold leading-6 text-foreground hover:text-foreground/80 text-center"
             >
               Explore ShadCN UI <span aria-hidden="true">→</span>
             </a>
@@ -81,33 +81,33 @@ export function Home() {
   }
 
   return (
-    <div className="container py-12">
+    <div className="container py-6 sm:py-12">
       <div className="mx-auto max-w-4xl text-center">
         {homeData.heroImage && (
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <img
               src={urlFor(homeData.heroImage).url()}
               alt={homeData.title}
-              className="mx-auto rounded-lg shadow-lg max-w-2xl"
+              className="mx-auto rounded-lg shadow-lg w-full max-w-sm sm:max-w-md md:max-w-2xl"
             />
           </div>
         )}
-        <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight">
           {homeData.title}
         </h1>
         {homeData.subtitle && (
-          <h2 className="mt-4 text-2xl font-semibold text-muted-foreground">
+          <h2 className="mt-3 sm:mt-4 text-xl sm:text-2xl font-semibold text-muted-foreground">
             {homeData.subtitle}
           </h2>
         )}
-        <p className="mt-6 text-lg leading-8 text-muted-foreground">
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-muted-foreground">
           {homeData.description}
         </p>
         {homeData.ctaText && homeData.ctaLink && (
-          <div className="mt-10 flex items-center justify-center gap-x-6">
+          <div className="mt-8 sm:mt-10 flex items-center justify-center gap-4 sm:gap-x-6 flex-col sm:flex-row">
             <a
               href={homeData.ctaLink}
-              className="rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90"
+              className="w-full sm:w-auto rounded-md bg-primary px-4 py-3 sm:px-3.5 sm:py-2.5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 text-center"
             >
               {homeData.ctaText}
             </a>
@@ -115,12 +115,12 @@ export function Home() {
         )}
         
         {/* AI Advisor Flow */}
-        <div className="mt-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
+        <div className="mt-12 sm:mt-16">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 sm:mb-4">
               Get Strategic Roadmaps
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
               Tell us about your project and get strategic recommendations, implementation roadmaps, and expert guidance in just 2 minutes.
             </p>
           </div>
