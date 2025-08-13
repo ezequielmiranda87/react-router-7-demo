@@ -1,0 +1,66 @@
+# React Project Best Practices
+
+## Code Style
+- Use functional components with hooks
+- Use TypeScript for type safety
+- Use meaningful component and variable names
+- Keep components small and focused
+- Use camelCase for variables and functions
+- Use PascalCase for components
+
+## File Organization
+- Group related components in folders
+- Use index files for clean imports
+- Keep components in src/components
+- Keep pages/routes in src/routes or src/pages
+- Keep utilities in src/lib or src/utils
+
+## Component Structure
+- Export components as default
+- Use props interface for TypeScript
+- Destructure props at the top
+- Keep JSX clean and readable
+- Use semantic HTML elements
+
+## State Management
+- Use useState for local state
+- Use useEffect for side effects
+- Keep state as close to where it's used
+- Avoid prop drilling - use context if needed
+
+## Performance
+- Use React.memo for expensive components
+- Use useCallback for function props
+- Use useMemo for expensive calculations
+- Avoid inline objects and functions in render
+
+## Styling
+- Use Tailwind CSS classes
+- Keep styles consistent
+- Use CSS variables for theming
+- Avoid inline styles
+
+## Error Handling
+- Use error boundaries for component errors
+- Handle async errors properly
+- Provide meaningful error messages
+- Use try-catch for async operations
+
+## Code Quality
+- Write self-documenting code
+- Add comments for complex logic
+- Use consistent formatting
+- Keep functions small and focused
+- Avoid nested ternary operators
+
+## Imports
+- Group imports: React, third-party, local
+- Use absolute imports when possible
+- Remove unused imports
+- Use named imports for better tree-shaking
+
+## Git
+- Use conventional commit messages (feat:, fix:, docs:, style:, refactor:, test:, chore:)
+- Keep commits small and focused
+- Write simple, clear commit messages
+- Don't commit build files or node_modules 
